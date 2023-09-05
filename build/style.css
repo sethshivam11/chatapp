@@ -82,10 +82,15 @@
 }
 @media only screen and (max-width: 657px){
     #messageInput{
-        width: 60%;
+        width: 70vw;
     }
     .chat{
-        height: 95%;
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0px;
+    }
+    .chatArea{
+        height: 85vh;
     }
 }
 @media only screen and (max-width: 400px){
