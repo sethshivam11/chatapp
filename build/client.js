@@ -5,7 +5,7 @@ const form = document.getElementById("messageForm");
 const chatBox = document.getElementById("chatBox");
 var audio = new Audio("ting.mp3");
 var sent = new Audio("sent.mp3");
-const Socket = io("http://localhost:5000");
+const Socket = io();
 
 audioBtn.addEventListener("click", (e) => {
   e.preventDefault();

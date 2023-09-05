@@ -1,4 +1,3 @@
-const { Server } = require('socket.io');
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -11,14 +10,18 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname1, "build", "index.html"));
 });
 
-const io = new Server({
-  cors: {
-    origin: "http://localhost",
-    methods: ["GET", "POST"],
-}
+const server = app.listen(80, () => {
+  console.log("App is listening at port 80");
 });
-const users = {};
 
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000",
+  },
+});
+
+const users = {};
 
 io.on('connection', (socket) => {
     socket.on('new-user-joined', name => {
@@ -33,7 +36,4 @@ io.on('connection', (socket) => {
         delete users[socket.id];
     });
 })
-io.listen(5000, console.log("Server is running"));
-app.listen(80, () => {
-  console.log("App is listening at port 80");
-});
+// io.listen(80, console.log("Server is running"));
