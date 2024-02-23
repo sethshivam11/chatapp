@@ -23,6 +23,9 @@ audioBtn.addEventListener("click", (e) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const message = messageInput.value;
+  if(message.length === 0){
+     return;
+  }
   append(`You: ${message}`, "right");
   Socket.emit("send", message);
   messageInput.value = "";
